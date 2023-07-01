@@ -6,12 +6,18 @@ from Kastori import Kastori
 
 url = "http://e-tenderi.test/api/tenders"
 
+clean_file = open("logs.txt", "w")
+clean_file.close()
+
 def process_data(data):
     for obj in data:
         try:
             response = requests.post(url, json=obj)
             if response.status_code != 201 and response.status_code != 400:
-                print (obj)
+                file = open("logs.txt", "a")  # append mode
+                file.write(f"{obj} \n")
+                file.close()
+
             print("Status code:", response.status_code)
             print("Response:", response.json())
         except requests.exceptions.RequestException as e:

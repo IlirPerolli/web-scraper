@@ -3,7 +3,7 @@ import requests
 from datetime import datetime
 
 class Kastori:
-    url = "https://kastori.net/jobs/?&p=4"
+    url = "https://kastori.net/jobs/?job_type%5B%5D=Tendera&p=5"
     date_format = "%d/%m/%Y"
 
     def __init__(self):
