@@ -14,11 +14,10 @@ def process_data(data):
         try:
             response = requests.post(url, json=obj)
             if response.status_code != 201 and response.status_code != 400:
-                file = open("logs.txt", "a")  # append mode
+                file = open("logs.txt", "a")
                 file.write(f"{obj} \n")
                 file.close()
 
-            print("Status code:", response.status_code)
             print("Response:", response.json())
         except requests.exceptions.RequestException as e:
             print("An error occurred:", e)
