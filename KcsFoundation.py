@@ -21,7 +21,8 @@ class KcsFoundation:
             url = item.find('a').get('href').strip()
             image = item.find('img').get('src').strip()
 
-            url_exists = self.helpers.check_if_url_exists(title)
+            part_title = title.split("/")[0]
+            url_exists = self.helpers.check_if_url_exists(part_title)
 
             if url_exists is not True:
 

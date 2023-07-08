@@ -19,7 +19,18 @@ class Helpers:
             return False
 
     def get_raw_text(self, url):
+        if not self.is_webpage(url):
+            return False
+
         response = requests.get(url)
         job_content = BeautifulSoup(response.text, 'html.parser')
-        text = job_content.get_text().strip()
+        text = job_content.get_text().replace("\n", "").strip()
+
         return text
+
+    def is_webpage(self, url):
+        response = requests.head(url)
+        content_type = response.headers.get("content-type")
+        if content_type is None:
+            return False
+        return content_type.startswith("text/html")

@@ -18,7 +18,8 @@ class Caritas:
             title = job.text.strip()
             url = job.get('href').strip()
 
-            url_exists = self.helpers.check_if_url_exists(title)
+            part_title = title.split("/")[0]
+            url_exists = self.helpers.check_if_url_exists(part_title)
 
             if url_exists is not True:
                 raw_text = self.helpers.get_raw_text(url)

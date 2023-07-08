@@ -24,14 +24,17 @@ class Kastori:
             url = job.find('div', class_='listing-item__title').find('a').get('href').strip()
             date = job.find('div', class_='listing-item__date').text.strip()
 
-            url_exists = self.helpers.check_if_url_exists(title)
+            part_title = title.split("/")[0]
+            url_exists = self.helpers.check_if_url_exists(part_title)
 
             if url_exists is not True:
                 # raw_text = self.helpers.get_raw_text(url)
-                #
-                # openai_model = OpenAiModel("deadline", raw_text)
-                # deadline = openai_model.getResponse()
-                #
+                # if raw_text:
+                #     openai_model = OpenAiModel("deadline", raw_text)
+                #     response = openai_model.getResponse()
+                # else:
+                #     response = None
+
                 try:
                     date_object = str(datetime.strptime(date, self.date_format).date())
                 except:
