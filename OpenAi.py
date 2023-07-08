@@ -3,6 +3,7 @@ import openai
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
+
 class OpenAiModel:
     system_message = None
     prompt = ""
@@ -12,15 +13,15 @@ class OpenAiModel:
         self.type = type
         self.prompt = prompt
 
-        self.setTypes()
+        self.set_types()
 
-    def setTypes(self):
+    def set_types(self):
         if self.type == 'deadline':
             self.system_message = "By the text provided, you need to get the deadline of the application. I need an " \
                                   "answer provided by you specifying only the date, not followed by a description. " \
                                   "ONLY THE DATE in format: %d/%m/%Y."
 
-    def getResponse(self):
+    def get_response(self):
         completion = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[

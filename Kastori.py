@@ -6,7 +6,7 @@ from OpenAi import OpenAiModel
 
 
 class Kastori:
-    url = "https://kastori.net/jobs/?job_type%5B%5D=Tendera&p=5"
+    url = "https://kastori.net/jobs/?job_type%5B%5D=Pun%C3%AB&p=1&s=0"
     date_format = "%d/%m/%Y"
     helpers = Helpers()
 
@@ -22,7 +22,6 @@ class Kastori:
             title = job.find('div', class_='listing-item__title').text.strip()
             image = job.find('img', class_='profile__img-company').get('src').strip()
             url = job.find('div', class_='listing-item__title').find('a').get('href').strip()
-            date = job.find('div', class_='listing-item__date').text.strip()
 
             part_title = title.split("/")[0]
             url_exists = self.helpers.check_if_url_exists(part_title)
@@ -31,12 +30,12 @@ class Kastori:
                 # raw_text = self.helpers.get_raw_text(url)
                 # if raw_text:
                 #     openai_model = OpenAiModel("deadline", raw_text)
-                #     response = openai_model.getResponse()
+                #     response = openai_model.get_response()
                 # else:
                 #     response = None
-
+                response = None
                 try:
-                    date_object = str(datetime.strptime(date, self.date_format).date())
+                    date_object = str(datetime.strptime(response, self.date_format).date())
                 except:
                     date_object = None
 
