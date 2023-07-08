@@ -24,8 +24,7 @@ class OpenAiModel:
         completion = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system",
-                 "content": self.system_message},
+                {"role": "system", "content": self.system_message},
                 {"role": "user", "content": self.prompt}
             ]
         )
