@@ -18,7 +18,7 @@ class OpenAiModel:
         if self.type == 'deadline':
             self.system_message = "By the text provided, you need to get the deadline of the application. I need an " \
                                   "answer provided by you specifying only the date, not followed by a description. " \
-                                  "ONLY THE DATE in format: %d/%m/%Y. If not found, set date 1999/01/01"
+                                  "ONLY THE DATE in format: %d/%m/%Y."
 
     def getResponse(self):
         completion = openai.ChatCompletion.create(

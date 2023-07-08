@@ -1,9 +1,11 @@
 from bs4 import BeautifulSoup
 import requests
 from datetime import date
+from Helpers import Helpers
 
 class KcsFoundation:
     url = "https://www.kcsfoundation.org/grantet/thirrjet-e-hapura/"
+    helpers = Helpers()
 
     def __init__(self):
         self.parsedData = []
@@ -19,23 +21,21 @@ class KcsFoundation:
             url = item.find('a').get('href').strip()
             image = item.find('img').get('src').strip()
 
-            raw_text = self.get_raw_text(url)
+            url_exists = self.helpers.check_if_url_exists(title)
 
-            # openai_model = OpenAiModel("deadline", raw_text)
-            # deadline = openai_model.getResponse()
+            if url_exists is not True:
 
-            self.parsedData.append({
-                "name": title,
-                "url": url,
-                "image_path": image,
-                "deadline": None,
-                "company": "Kcs"
-            })
+                raw_text = self.helpers.get_raw_text(url)
+
+                # openai_model = OpenAiModel("deadline", raw_text)
+                # deadline = openai_model.getResponse()
+
+                self.parsedData.append({
+                    "name": title,
+                    "url": url,
+                    "image_path": image,
+                    "deadline": None,
+                    "company": "Kcs"
+                })
 
         return self.parsedData
-
-    def get_raw_text(self, url):
-        response = requests.get(url)
-        job_content = BeautifulSoup(response.text, 'html.parser')
-        text = job_content.get_text().strip()
-        return text
