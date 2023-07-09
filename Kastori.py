@@ -24,7 +24,7 @@ class Kastori:
             url = job.find('div', class_='listing-item__title').find('a').get('href').strip()
 
             part_title = title.split("/")[0]
-            url_exists = self.helpers.check_if_url_exists(part_title)
+            url_exists = self.helpers.check_if_url_exists("tender", part_title)
 
             if url_exists is not True:
                 # raw_text = self.helpers.get_raw_text(url)

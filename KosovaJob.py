@@ -34,16 +34,18 @@ class KosovaJob:
 
             url = job.find('a').get('href').strip()
 
+            image = job.find('div').attrs.get("data-background-image", None)
+
             part_title = title.split("/")[0]
 
-            url_exists = self.helpers.check_if_url_exists(part_title)
+            url_exists = self.helpers.check_if_url_exists("job", part_title)
 
             if url_exists is not True:
 
                 self.parsedData.append({
                     "name": title,
                     "url": url,
-                    "image_path": None,
+                    "image_path": image,
                     "deadline": deadline,
                     "company": "Kosova Job"
                 })

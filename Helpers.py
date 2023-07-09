@@ -4,10 +4,15 @@ from bs4 import BeautifulSoup
 
 class Helpers:
     tender_exists_url = "http://e-tenderi.test/api/tenders/"
+    job_exists_url = "http://e-tenderi.test/api/jobs/"
 
-    def check_if_url_exists(self, name):
+    def check_if_url_exists(self, type, name):
         try:
-            response = requests.get(str(self.tender_exists_url + name))
+            if type == 'job':
+                response = requests.get(str(self.job_exists_url + name))
+            else:
+                response = requests.get(str(self.tender_exists_url + name))
+
             if response.status_code != 200:
                 return False
 
