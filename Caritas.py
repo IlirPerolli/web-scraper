@@ -14,6 +14,7 @@ class Caritas:
         soup = BeautifulSoup(html, 'html.parser')
 
         jobs = soup.find_all('a', class_="document")
+        
         for job in jobs:
             title = job.text.strip()
             url = job.get('href').strip()
@@ -32,7 +33,8 @@ class Caritas:
                     "url": url,
                     "image_path": None,
                     "deadline": None,
-                    "company": "Caritas"
+                    "provider": "Caritas",
+                    'country': "Kosova"
                 })
 
         return self.parsedData

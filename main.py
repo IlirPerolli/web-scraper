@@ -4,6 +4,7 @@ from Caritas import Caritas
 from KcsFoundation import KcsFoundation
 from Kastori import Kastori
 from KosovaJob import KosovaJob
+from Telegrafi import Telegrafi
 
 tender_url = "http://e-tenderi.test/api/tenders"
 job_url = "http://e-tenderi.test/api/jobs"
@@ -33,23 +34,28 @@ caritas = Caritas()
 kcsFoundation = KcsFoundation()
 kastori = Kastori()
 kosovaJob = KosovaJob()
+telegrafi = Telegrafi()
 
 data_caritas = caritas.get_data()
 data_kcs = kcsFoundation.get_data()
 data_kastori = kastori.get_data()
 data_kosova_job = kosovaJob.get_data()
+data_telegrafi = telegrafi.get_data()
 
 thread_caritas = threading.Thread(target=process_data, args=('tender', data_caritas,))
 thread_kcs = threading.Thread(target=process_data, args=('tender', data_kcs,))
 thread_kastori = threading.Thread(target=process_data, args=('tender', data_kastori,))
 thread_kosova_job = threading.Thread(target=process_data, args=('job', data_kosova_job,))
+thread_telegrafi = threading.Thread(target=process_data, args=('job', data_telegrafi,))
 
 thread_caritas.start()
 thread_kcs.start()
 thread_kastori.start()
 thread_kosova_job.start()
+thread_telegrafi.start()
 
 thread_caritas.join()
 thread_kcs.join()
 thread_kastori.join()
 thread_kosova_job.join()
+thread_telegrafi.join()

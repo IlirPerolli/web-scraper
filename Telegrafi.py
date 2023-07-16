@@ -3,12 +3,11 @@ from datetime import timedelta, datetime
 from bs4 import BeautifulSoup
 import requests
 from Helpers import Helpers
-from zenrows import ZenRowsClient
 
 
-class KosovaJob:
+class Telegrafi:
 
-    url = "https://kosovajob.com/"
+    url = "https://jobs.telegrafi.com/"
     helpers = Helpers()
     date_format = "%d/%m/%Y"
 
@@ -16,25 +15,20 @@ class KosovaJob:
         self.parsedData = []
 
     def get_data(self):
-        client = ZenRowsClient("49c61e95a6c41b05cca9c0f49f10d5cda88747c0")
-
-        html = client.get(self.url).text
-
+        html = requests.get(self.url).text
         soup = BeautifulSoup(html, 'html.parser')
 
-        jobs = soup.find_all('div', class_="jobListCnts")
+        jobs = soup.find_all('div', class_="job-info")
 
         for job in jobs:
 
-            titleEl = job.find('div', class_="jobListTitle")
+            titleEl = job.find('div', class_="job-name").find('h3')
 
-            cityEl = job.find('div', class_="jobListCity")
+            deadlineEl = job.find('div', class_="job-schedule")
 
-            deadlineEl = job.find('div', class_="jobListExpires")
+            category = job.find('span', class_="puna-position-title").text.strip()
 
             title = titleEl.text.strip()
-
-            city = cityEl.text.strip()
 
             date = deadlineEl.text.strip()
 
@@ -42,7 +36,10 @@ class KosovaJob:
 
             url = job.find('a').get('href').strip()
 
-            image = job.find('div').attrs.get("data-background-image", None)
+            image = job.find('img').get('src').strip()
+
+            if image == '/assets/img/passBackLogo.svg':
+                image = None
 
             part_title = title.split("/")[0]
 
@@ -55,9 +52,9 @@ class KosovaJob:
                     "url": url,
                     "image_path": image,
                     "deadline": deadline,
-                    "provider": "Kosova Job",
+                    "provider": "Telegrafi",
                     'country': "Kosova",
-                    'city': city
+                    'category': category
                 })
 
         return self.parsedData

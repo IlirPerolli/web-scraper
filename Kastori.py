@@ -44,7 +44,8 @@ class Kastori:
                     "url": url,
                     "image_path": image,
                     "deadline": date_object,
-                    "company": "Kastori"
+                    "provider": "Kastori",
+                    'country': "Kosova"
                 })
 
         return self.parsedData
