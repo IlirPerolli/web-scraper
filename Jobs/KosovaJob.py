@@ -44,9 +44,7 @@ class KosovaJob:
 
             image = job.find('div').attrs.get("data-background-image", None)
 
-            part_title = title.split("/")[0]
-
-            url_exists = self.helpers.check_if_url_exists("job", part_title)
+            url_exists = self.helpers.check_if_url_exists("job", title, deadline)
 
             if url_exists is not True:
 

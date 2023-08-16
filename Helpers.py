@@ -6,12 +6,19 @@ class Helpers:
     tender_exists_url = "http://e-tenderi.test/api/tenders/"
     job_exists_url = "http://e-tenderi.test/api/jobs/"
 
-    def check_if_url_exists(self, type, name):
+    def check_if_url_exists(self, type, name, deadline=None):
         try:
+            params = {
+                'name': name,
+            }
+
+            if deadline is not None:
+                params['deadline'] = deadline
+
             if type == 'job':
-                response = requests.get(str(self.job_exists_url + name))
+                response = requests.get(self.job_exists_url, params=params)
             else:
-                response = requests.get(str(self.tender_exists_url + name))
+                response = requests.get(self.tender_exists_url, params=params)
 
             if response.status_code != 200:
                 return False

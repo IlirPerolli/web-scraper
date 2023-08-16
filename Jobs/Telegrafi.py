@@ -28,6 +28,8 @@ class Telegrafi:
 
             category = job.find('span', class_="puna-position-title").text.strip()
 
+            city = job.find('span', class_="puna-location").text.strip()
+
             title = titleEl.text.strip()
 
             date = deadlineEl.text.strip()
@@ -41,9 +43,7 @@ class Telegrafi:
             if image == '/assets/img/passBackLogo.svg':
                 image = None
 
-            part_title = title.split("/")[0]
-
-            url_exists = self.helpers.check_if_url_exists("job", part_title)
+            url_exists = self.helpers.check_if_url_exists("job", title, deadline)
 
             if url_exists is not True:
 
@@ -53,8 +53,9 @@ class Telegrafi:
                     "image_path": image,
                     "deadline": deadline,
                     "provider": "Telegrafi",
-                    'country': "Kosova",
-                    'category': category
+                    "country": "Kosova",
+                    "city": city,
+                    "category": category
                 })
 
         return self.parsedData

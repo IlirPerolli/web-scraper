@@ -1,9 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
+from datetime import date
 from Helpers import Helpers
 
-class Caritas:
-    url = "https://www.caritaskosova.org/sq/shpallje"
+class KcsFoundation:
+    url = "https://www.kcsfoundation.org/grantet/thirrjet-e-hapura/"
     helpers = Helpers()
 
     def __init__(self):
@@ -12,17 +13,18 @@ class Caritas:
     def get_data(self):
         html = requests.get(self.url).text
         soup = BeautifulSoup(html, 'html.parser')
+        jobs = soup.find('ul', class_="card-list")
 
-        jobs = soup.find_all('a', class_="document")
-        
-        for job in jobs:
-            title = job.text.strip()
-            url = job.get('href').strip()
+        all_items = jobs.find_all('li', class_ = "col-xs-12")
+        for item in all_items:
+            title = item.text.strip()
+            url = item.find('a').get('href').strip()
+            image = item.find('img').get('src').strip()
 
-            part_title = title.split("/")[0]
-            url_exists = self.helpers.check_if_url_exists("tender", part_title)
+            url_exists = self.helpers.check_if_url_exists("tender", title)
 
             if url_exists is not True:
+
                 raw_text = self.helpers.get_raw_text(url)
 
                 # openai_model = OpenAiModel("deadline", raw_text)
@@ -31,9 +33,9 @@ class Caritas:
                 self.parsedData.append({
                     "name": title,
                     "url": url,
-                    "image_path": None,
+                    "image_path": image,
                     "deadline": None,
-                    "provider": "Caritas",
+                    "provider": "Kcs",
                     'country': "Kosova"
                 })
 
