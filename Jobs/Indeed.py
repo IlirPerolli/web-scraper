@@ -14,6 +14,11 @@ class Indeed:
 
     def __init__(self):
         self.parsedData = []
+        self.popularJobs = ['Software Developer', 'Customer service representative', 'Virtual assistant',
+                            'FlexJobs Corporation',
+                            'Data science', 'Sales Representative', 'Tutor', 'Designer', 'Financial Analyst',
+                            'Data entry', 'Information Security Analyst', 'Database Administrator', 'Financial Manager',
+                            'Statistician']
 
     def get_data(self):
         client = ZenRowsClient("569a9c9a52d37d3c46ddfaed9a53edb66ecd3592")
@@ -23,11 +28,19 @@ class Indeed:
             "premium_proxy": "true"
         }
 
-        html = client.get(self.url, params=params).text
+        for category in self.popularJobs:
 
-        soup = BeautifulSoup(html, 'html.parser')
+            html = client.get(f"https://www.indeed.com/jobs?q={category}&l=Remote&vjk=cbf747028cec6cfa", params=params).text
 
-        jobs = soup.find_all('div', class_="slider_item")
+            soup = BeautifulSoup(html, 'html.parser')
+
+            jobs = soup.find_all('div', class_="slider_item")
+
+            self.get_jobs(jobs, category)
+
+        return self.parsedData
+
+    def get_jobs(self, jobs, category):
 
         for job in jobs:
             salaryEl = job.find('div', class_="salary-snippet-container") or job.find('div',
@@ -57,10 +70,8 @@ class Indeed:
                     "url": url,
                     "image_path": None,
                     "deadline": self.helpers.add_one_month_deadline(),
-                    "category": "Computer Science",
+                    "category": category,
                     "price": salary,
                     "provider": "Indeed",
                     "country": "Remote",
                 })
-
-        return self.parsedData
