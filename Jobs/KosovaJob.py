@@ -7,7 +7,6 @@ from zenrows import ZenRowsClient
 
 
 class KosovaJob:
-
     url = "https://kosovajob.com/"
     helpers = Helpers()
     date_format = "%d/%m/%Y"
@@ -16,7 +15,7 @@ class KosovaJob:
         self.parsedData = []
 
     def get_data(self):
-        client = ZenRowsClient("49c61e95a6c41b05cca9c0f49f10d5cda88747c0")
+        client = ZenRowsClient("569a9c9a52d37d3c46ddfaed9a53edb66ecd3592")
 
         html = client.get(self.url).text
 
@@ -47,7 +46,6 @@ class KosovaJob:
             url_exists = self.helpers.check_if_url_exists("job", title, deadline)
 
             if url_exists is not True:
-
                 self.parsedData.append({
                     "name": title,
                     "url": url,

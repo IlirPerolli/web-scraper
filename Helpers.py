@@ -1,6 +1,9 @@
+from datetime import datetime, timedelta
+
 import requests
 import json
 from bs4 import BeautifulSoup
+
 
 class Helpers:
     tender_exists_url = "http://e-tenderi.test/api/tenders/"
@@ -46,3 +49,13 @@ class Helpers:
         if content_type is None:
             return False
         return content_type.startswith("text/html")
+
+    def add_one_month_deadline(self):
+        current_date = datetime.now()
+
+        one_month_from_now = current_date + timedelta(days=30)
+
+        date_format = "%Y-%m-%d"
+
+        return one_month_from_now.strftime(date_format)
+

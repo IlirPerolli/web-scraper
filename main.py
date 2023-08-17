@@ -1,5 +1,7 @@
 import requests
 import threading
+
+from Jobs.Indeed import Indeed
 from Tenders.Caritas import Caritas
 from Jobs.Gjirafa import Gjirafa
 from Tenders.Cdf import Cdf
@@ -49,6 +51,7 @@ osce = Osce()
 world_bank = WorldBank()
 undp = Undp()
 cdf = Cdf()
+indeed = Indeed()
 
 data_caritas = caritas.get_data()
 data_kcs = kcsFoundation.get_data()
@@ -61,6 +64,7 @@ data_osce = osce.get_data()
 data_world_bank = world_bank.get_data()
 data_undp = undp.get_data()
 data_cdf = cdf.get_data()
+data_indeed = indeed.get_data()
 
 thread_caritas = threading.Thread(target=process_data, args=('tender', data_caritas,))
 thread_kcs = threading.Thread(target=process_data, args=('tender', data_kcs,))
@@ -73,6 +77,7 @@ thread_osce = threading.Thread(target=process_data, args=('tender', data_osce,))
 thread_world_bank = threading.Thread(target=process_data, args=('tender', data_world_bank,))
 thread_undp = threading.Thread(target=process_data, args=('tender', data_undp,))
 thread_cdf = threading.Thread(target=process_data, args=('tender', data_cdf,))
+thread_indeed = threading.Thread(target=process_data, args=('job', data_indeed,))
 
 thread_caritas.start()
 thread_kcs.start()
@@ -85,6 +90,7 @@ thread_osce.start()
 thread_world_bank.start()
 thread_undp.start()
 thread_cdf.start()
+thread_indeed.start()
 
 thread_caritas.join()
 thread_kcs.join()
@@ -97,3 +103,4 @@ thread_osce.join()
 thread_world_bank.join()
 thread_undp.join()
 thread_cdf.join()
+thread_indeed.join()

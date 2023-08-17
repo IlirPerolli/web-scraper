@@ -6,7 +6,6 @@ from Helpers import Helpers
 
 
 class Telegrafi:
-
     url = "https://jobs.telegrafi.com/"
     helpers = Helpers()
     date_format = "%d/%m/%Y"
@@ -46,7 +45,6 @@ class Telegrafi:
             url_exists = self.helpers.check_if_url_exists("job", title, deadline)
 
             if url_exists is not True:
-
                 self.parsedData.append({
                     "name": title,
                     "url": url,
