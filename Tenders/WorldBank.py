@@ -38,7 +38,7 @@ class WorldBank:
                     "deadline": None,
                     "provider": provider,
                     "city": city,
-                    "category": category,
+                    "categories": [category],
                     'country': "Kosovo",
                 })
 

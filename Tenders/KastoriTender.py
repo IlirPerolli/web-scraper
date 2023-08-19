@@ -40,7 +40,7 @@ class KastoriTender:
                     "deadline": deadline,
                     "provider": provider,
                     "city": city,
-                    "category": category,
+                    "categories": [category],
                     'country': "Kosovo",
                 })
 

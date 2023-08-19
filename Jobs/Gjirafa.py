@@ -67,7 +67,7 @@ class Gjirafa:
                         "deadline": deadline,
                         "provider": "Gjirafa",
                         'country': "Kosovo",
-                        'category': category
+                        'categories': [category]
                     })
 
         return self.parsedData

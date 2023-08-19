@@ -41,7 +41,7 @@ class Kastori:
                     "image_path": image,
                     "deadline": deadline,
                     "provider": provider,
-                    "category": category,
+                    "categories": [category],
                     "city": city,
                     'country': "Kosovo",
                 })

@@ -53,7 +53,7 @@ class Telegrafi:
                     "provider": "Telegrafi",
                     "country": "Kosovo",
                     "city": city,
-                    "category": category
+                    "categories": [category]
                 })
 
         return self.parsedData

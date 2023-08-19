@@ -76,7 +76,7 @@ class Indeed:
                     "url": url,
                     "image_path": None,
                     "deadline": self.helpers.add_one_month_deadline(),
-                    "category": category,
+                    "categories": [category],
                     "price": salary,
                     'country': 'United States',
                     "is_remote": True,
