@@ -5,7 +5,7 @@ from OpenAi import OpenAiModel
 
 
 class KastoriTender:
-    url = "https://octopus-app-sngkk.ondigitalocean.app/v1/jobs?page=1&limit=32&typeOfJob=prokurim"
+    url = "https://octopus-app-sngkk.ondigitalocean.app/v1/jobs?page=1&limit=32&typeOfJob=grante"
     date_format = "%Y-%m-%d"
     helpers = Helpers()
 
@@ -14,6 +14,7 @@ class KastoriTender:
 
     def get_data(self):
         data = self.fetch_data_from_api(self.url)
+
         if data is None:
             return None
 
