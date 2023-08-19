@@ -43,7 +43,7 @@ class Kastori:
                     "provider": provider,
                     "category": category,
                     "city": city,
-                    'country': "Kosova",
+                    'country': "Kosovo",
                 })
 
         return self.parsedData

@@ -41,6 +41,7 @@ sources = [
     {'type': 'job', 'source': Kastori()},
     {'type': 'tender', 'source': KastoriTender()},
     {'type': 'job', 'source': Telegrafi()},
+
     {'type': 'job', 'source': Gjirafa()},
     {'type': 'tender', 'source': Osce()},
     {'type': 'tender', 'source': WorldBank()},

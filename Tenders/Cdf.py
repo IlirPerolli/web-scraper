@@ -34,7 +34,7 @@ class Cdf:
                     "image_path": None,
                     "deadline": deadline,
                     "provider": "Cdf",
-                    'country': "Kosova"
+                    'country': "Kosovo"
                 })
 
         return self.parsedData

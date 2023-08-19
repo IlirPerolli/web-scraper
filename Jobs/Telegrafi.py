@@ -51,7 +51,7 @@ class Telegrafi:
                     "image_path": image,
                     "deadline": deadline,
                     "provider": "Telegrafi",
-                    "country": "Kosova",
+                    "country": "Kosovo",
                     "city": city,
                     "category": category
                 })

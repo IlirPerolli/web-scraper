@@ -15,7 +15,7 @@ class KosovaJob:
         self.parsedData = []
 
     def get_data(self):
-        client = ZenRowsClient("569a9c9a52d37d3c46ddfaed9a53edb66ecd3592")
+        client = ZenRowsClient("bb0f5c805023b6b10e61d1f8fa99e6c7ba88da50")
 
         html = client.get(self.url).text
 
@@ -52,7 +52,7 @@ class KosovaJob:
                     "image_path": image,
                     "deadline": deadline,
                     "provider": "Kosova Job",
-                    'country': "Kosova",
+                    'country': "Kosovo",
                     'city': city
                 })
 

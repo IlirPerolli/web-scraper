@@ -56,5 +56,5 @@ class Undp:
                 "image_path": None,
                 "deadline": deadline,
                 "provider": "Undp",
-                'country': "Kosova"
+                'country': "Kosovo"
             })

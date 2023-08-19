@@ -36,7 +36,7 @@ class KcsFoundation:
                     "image_path": image,
                     "deadline": None,
                     "provider": "Kcs",
-                    'country': "Kosova"
+                    'country': "Kosovo"
                 })
 
         return self.parsedData

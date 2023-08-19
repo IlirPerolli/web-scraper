@@ -32,7 +32,7 @@ class Osce:
                     "image_path": None,
                     "deadline": deadline,
                     "provider": "Osce",
-                    'country': "Kosova"
+                    'country': "Kosovo"
                 })
 
         return self.parsedData

@@ -1,4 +1,4 @@
-from datetime import timedelta, datetime
+import re
 from urllib.parse import urlparse, parse_qs
 
 from bs4 import BeautifulSoup
@@ -21,7 +21,7 @@ class Indeed:
                             'Statistician']
 
     def get_data(self):
-        client = ZenRowsClient("569a9c9a52d37d3c46ddfaed9a53edb66ecd3592")
+        client = ZenRowsClient("bb0f5c805023b6b10e61d1f8fa99e6c7ba88da50")
 
         params = {
             "js_render": "true",
@@ -29,8 +29,8 @@ class Indeed:
         }
 
         for category in self.popularJobs:
-
-            html = client.get(f"https://www.indeed.com/jobs?q={category}&l=Remote&vjk=cbf747028cec6cfa", params=params).text
+            html = client.get(f"https://www.indeed.com/jobs?q={category}&l=Remote&vjk=cbf747028cec6cfa",
+                              params=params).text
 
             soup = BeautifulSoup(html, 'html.parser')
 
@@ -47,6 +47,11 @@ class Indeed:
                                                                                       class_="estimated-salary-container")
 
             title = job.find('h2', class_="jobTitle").text.strip()
+
+            locationEl = job.find('div', class_="companyLocation").text.strip()
+
+            city, country = self.get_location(locationEl)
+
             salary = None
 
             if salaryEl:
@@ -65,13 +70,41 @@ class Indeed:
             url_exists = self.helpers.check_if_url_exists("job", title)
 
             if url_exists is not True:
-                self.parsedData.append({
+
+                data_entry = {
                     "name": title,
                     "url": url,
                     "image_path": None,
                     "deadline": self.helpers.add_one_month_deadline(),
                     "category": category,
                     "price": salary,
+                    'country': 'United States',
+                    "is_remote": True,
                     "provider": "Indeed",
-                    "country": "Remote",
-                })
+                }
+
+                if city:
+                    data_entry["city"] = city
+
+                self.parsedData.append(data_entry)
+
+    def get_location(self, location):
+        pattern = r"Remote in ([a-zA-Z\s]+, [A-Z]{2} \d{5})"
+
+        match = re.search(pattern, location)
+        if match:
+            location = match.group(1)
+
+            url = f"http://api.geonames.org/searchJSON?q={location}&maxRows=10&username=ilir"
+
+            response = requests.get(url)
+            data = response.json()
+
+            if data.get('geonames'):
+                first_result = data['geonames'][0]
+                city = first_result['name']
+                country = first_result['countryName']
+
+                return city, country
+
+        return None, None

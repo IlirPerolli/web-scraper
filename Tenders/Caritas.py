@@ -33,7 +33,7 @@ class Caritas:
                     "image_path": None,
                     "deadline": None,
                     "provider": "Caritas",
-                    'country': "Kosova"
+                    'country': "Kosovo"
                 })
 
         return self.parsedData

@@ -39,7 +39,7 @@ class WorldBank:
                     "provider": provider,
                     "city": city,
                     "category": category,
-                    'country': "Kosova",
+                    'country': "Kosovo",
                 })
 
         return self.parsedData

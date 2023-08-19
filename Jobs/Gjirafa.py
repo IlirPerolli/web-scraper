@@ -66,7 +66,7 @@ class Gjirafa:
                         "image_path": image,
                         "deadline": deadline,
                         "provider": "Gjirafa",
-                        'country': "Kosova",
+                        'country': "Kosovo",
                         'category': category
                     })
 
