@@ -5,7 +5,7 @@ import requests
 from Helpers import Helpers
 
 
-class Remote:
+class RemoteCo:
     url = "https://remote.co/remote-jobs/"
     helpers = Helpers()
     date_format = "%d/%m/%Y"

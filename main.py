@@ -3,7 +3,7 @@ import concurrent.futures
 
 # Assuming you have these imports at the top of your file
 from Jobs.Indeed import Indeed
-from Jobs.Remote import Remote
+from Jobs.RemoteCo import RemoteCo
 from Tenders.Caritas import Caritas
 from Jobs.Gjirafa import Gjirafa
 from Tenders.Cdf import Cdf
@@ -37,7 +37,7 @@ def process_data(type, source):
 
 
 sources = [
-    {'type': 'job', 'source': Remote()},
+    {'type': 'job', 'source': RemoteCo()},
     {'type': 'tender', 'source': Caritas()},
     {'type': 'tender', 'source': KcsFoundation()},
     {'type': 'job', 'source': Kastori()},
