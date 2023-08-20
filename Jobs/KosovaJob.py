@@ -1,7 +1,6 @@
 from datetime import timedelta, datetime
 
 from bs4 import BeautifulSoup
-import requests
 from Helpers import Helpers
 from zenrows import ZenRowsClient
 
