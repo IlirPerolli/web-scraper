@@ -1,4 +1,5 @@
 from datetime import datetime
+import re
 
 from bs4 import BeautifulSoup
 import requests
@@ -59,8 +60,10 @@ class Cdf:
         deadline_str = None
         for label in deadline_labels:
             if label in data:
-                deadline_str = data.split(label)[1].split(" ")[0]
-                break
+                match = re.search(r'(\d{2}\.\d{2}\.\d{4})', data.split(label)[1])
+                if match:
+                    deadline_str = match.group(1)
+                    break
 
         if deadline_str:
             parsed_deadline = datetime.strptime(deadline_str, "%d.%m.%Y")
@@ -69,4 +72,5 @@ class Cdf:
             formatted_deadline = None
 
         return formatted_deadline
+
 
