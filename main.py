@@ -1,9 +1,9 @@
 import requests
 import concurrent.futures
 
-# Assuming you have these imports at the top of your file
 from Jobs.Indeed import Indeed
 from Jobs.RemoteCo import RemoteCo
+from Jobs.StepStone import StepStone
 from Tenders.Caritas import Caritas
 from Jobs.Gjirafa import Gjirafa
 from Tenders.Cdf import Cdf
@@ -38,6 +38,7 @@ def process_data(type, source):
 
 sources = [
     {'type': 'job', 'source': RemoteCo()},
+    # {'type': 'job', 'source': StepStone()},
     {'type': 'tender', 'source': Caritas()},
     {'type': 'tender', 'source': KcsFoundation()},
     {'type': 'job', 'source': Kastori()},
@@ -50,7 +51,7 @@ sources = [
     {'type': 'tender', 'source': Undp()},
     {'type': 'tender', 'source': Cdf()},
     {'type': 'job', 'source': KosovaJob()},
-    {'type': 'job', 'source': Indeed()}
+    # {'type': 'job', 'source': Indeed()}
 ]
 
 with concurrent.futures.ThreadPoolExecutor() as executor:
