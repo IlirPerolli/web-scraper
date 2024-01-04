@@ -6,8 +6,8 @@ from bs4 import BeautifulSoup
 
 
 class Helpers:
-    tender_exists_url = "http://e-tenderi.test/api/tenders/"
-    job_exists_url = "http://e-tenderi.test/api/jobs/"
+    tender_exists_url = "https://punapune.com/api/tenders/"
+    job_exists_url = "https://punapune.com/api/jobs/"
 
     def check_if_url_exists(self, type, name, deadline=None):
         try:

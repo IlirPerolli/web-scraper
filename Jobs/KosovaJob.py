@@ -14,7 +14,7 @@ class KosovaJob:
         self.parsedData = []
 
     def get_data(self):
-        client = ZenRowsClient("bb0f5c805023b6b10e61d1f8fa99e6c7ba88da50")
+        client = ZenRowsClient("036faa034fde5136fcb3f696a6ff094037ee522d")
 
         html = client.get(self.url).text
 

@@ -16,8 +16,8 @@ from Tenders.Osce import Osce
 from Tenders.Undp import Undp
 from Tenders.WorldBank import WorldBank
 
-tender_url = "http://e-tenderi.test/api/tenders"
-job_url = "http://e-tenderi.test/api/jobs"
+tender_url = "https://punapune.com/api/tenders"
+job_url = "https://punapune.com/api/jobs"
 logs = []
 
 
@@ -37,19 +37,19 @@ def process_data(type, source):
 
 
 sources = [
-    {'type': 'job', 'source': RemoteCo()},
+    # {'type': 'job', 'source': RemoteCo()},
     # {'type': 'job', 'source': StepStone()},
-    {'type': 'tender', 'source': Caritas()},
-    {'type': 'tender', 'source': KcsFoundation()},
+    # {'type': 'tender', 'source': Caritas()},
+    # {'type': 'tender', 'source': KcsFoundation()},
     {'type': 'job', 'source': Kastori()},
     {'type': 'tender', 'source': KastoriTender()},
     {'type': 'job', 'source': Telegrafi()},
 
     {'type': 'job', 'source': Gjirafa()},
-    {'type': 'tender', 'source': Osce()},
-    {'type': 'tender', 'source': WorldBank()},
-    {'type': 'tender', 'source': Undp()},
-    {'type': 'tender', 'source': Cdf()},
+    # {'type': 'tender', 'source': Osce()},
+    # {'type': 'tender', 'source': WorldBank()},
+    # {'type': 'tender', 'source': Undp()},
+    # {'type': 'tender', 'source': Cdf()},
     {'type': 'job', 'source': KosovaJob()},
     # {'type': 'job', 'source': Indeed()}
 ]

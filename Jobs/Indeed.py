@@ -21,7 +21,7 @@ class Indeed:
                             'Statistician']
 
     def get_data(self):
-        client = ZenRowsClient("bb0f5c805023b6b10e61d1f8fa99e6c7ba88da50")
+        client = ZenRowsClient("036faa034fde5136fcb3f696a6ff094037ee522d")
 
         params = {
             "js_render": "true",
@@ -35,6 +35,8 @@ class Indeed:
             soup = BeautifulSoup(html, 'html.parser')
 
             jobs = soup.find_all('div', class_="slider_item")
+            if not jobs:
+                continue
 
             self.get_jobs(jobs, category)
 
@@ -48,9 +50,9 @@ class Indeed:
 
             title = job.find('h2', class_="jobTitle").text.strip()
 
-            locationEl = job.find('div', class_="companyLocation").text.strip()
-
-            city, country = self.get_location(locationEl)
+            # locationEl = job.find('div', class_="companyLocation").text.strip()
+            #
+            # city, country = self.get_location(locationEl)
 
             salary = None
 
@@ -70,7 +72,6 @@ class Indeed:
             url_exists = self.helpers.check_if_url_exists("job", title)
 
             if url_exists is not True:
-
                 data_entry = {
                     "name": title,
                     "url": url,
@@ -83,8 +84,8 @@ class Indeed:
                     "provider": "Indeed",
                 }
 
-                if city:
-                    data_entry["city"] = city
+                # if city:
+                #     data_entry["city"] = city
 
                 self.parsedData.append(data_entry)
 
