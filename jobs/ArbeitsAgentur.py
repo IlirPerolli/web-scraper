@@ -35,20 +35,19 @@ class ArbeitsAgentur:
         for item in jobs:
             title = item['titel']
             url = f"https://www.arbeitsagentur.de/jobsuche/jobdetail/{item['refnr']}"
-            deadline = self.helpers.add_one_month_deadline()
             provider = "ArbeitsAgentur"
 
             arbeitsort = item.get('arbeitsort', {})
             city = arbeitsort.get('ort', None)
 
-            url_exists = self.helpers.check_if_url_exists("job", title, deadline)
-
+            url_exists = self.helpers.check_if_url_exists("job", title, None)
+            
             if url_exists is not True:
                 self.parsedData.append({
                     "name": title,
                     "url": url,
                     "image_path": None,
-                    "deadline": deadline,
+                    "deadline": None,
                     "provider": provider,
                     "categories": [category],
                     "city": city,

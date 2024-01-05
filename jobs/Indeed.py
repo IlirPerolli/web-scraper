@@ -70,7 +70,7 @@ class Indeed:
                     "name": title,
                     "url": url,
                     "image_path": None,
-                    "deadline": self.helpers.add_one_month_deadline(),
+                    "deadline": None,
                     "categories": [category],
                     "price": salary,
                     'country': 'United States',
