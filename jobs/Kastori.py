@@ -66,5 +66,4 @@ class Kastori:
     def formatDate(self, date):
         datetime_obj = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%fZ")
 
-        # Convert datetime object to the desired format
         return datetime_obj.strftime(self.date_format)

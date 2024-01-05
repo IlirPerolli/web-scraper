@@ -21,20 +21,14 @@ class Indeed:
                             'Statistician']
 
     def get_data(self):
-        client = ZenRowsClient("036faa034fde5136fcb3f696a6ff094037ee522d")
-
-        params = {
-            "js_render": "true",
-            "premium_proxy": "true"
-        }
 
         for category in self.popularJobs:
-            html = client.get(f"https://www.indeed.com/jobs?q={category}&l=Remote&vjk=cbf747028cec6cfa",
-                              params=params).text
+            html = requests.get(f"https://api.scrapfly.io/scrape?tags=player%2Cproject%3Adefault&asp=true&render_js=true&key=scp-live-246e37fd604f4254b3d27f53b1b36d41&url=https://www.indeed.com/jobs?q={category}&l=Remote&vjk=cbf747028cec6cfa").text
 
             soup = BeautifulSoup(html, 'html.parser')
 
             jobs = soup.find_all('div', class_="slider_item")
+
             if not jobs:
                 continue
 

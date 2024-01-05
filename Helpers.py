@@ -3,11 +3,10 @@ from datetime import datetime, timedelta
 import requests
 import json
 from bs4 import BeautifulSoup
+from common.api import *
 
 
 class Helpers:
-    tender_exists_url = "https://punapune.com/api/tenders/"
-    job_exists_url = "https://punapune.com/api/jobs/"
 
     def check_if_url_exists(self, type, name, deadline=None):
         try:
@@ -19,9 +18,9 @@ class Helpers:
                 params['deadline'] = deadline
 
             if type == 'job':
-                response = requests.get(self.job_exists_url, params=params)
+                response = requests.get(job_url, params=params)
             else:
-                response = requests.get(self.tender_exists_url, params=params)
+                response = requests.get(tender_url, params=params)
 
             if response.status_code != 200:
                 return False
@@ -58,4 +57,3 @@ class Helpers:
         date_format = "%Y-%m-%d"
 
         return one_month_from_now.strftime(date_format)
-

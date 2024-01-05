@@ -1,23 +1,24 @@
 import requests
 import concurrent.futures
 
-from Jobs.Indeed import Indeed
-from Jobs.RemoteCo import RemoteCo
-from Jobs.StepStone import StepStone
-from Tenders.Caritas import Caritas
-from Jobs.Gjirafa import Gjirafa
-from Tenders.Cdf import Cdf
-from Tenders.KcsFoundation import KcsFoundation
-from Jobs.Kastori import Kastori
-from Tenders.KastoriTender import KastoriTender
-from Jobs.KosovaJob import KosovaJob
-from Jobs.Telegrafi import Telegrafi
-from Tenders.Osce import Osce
-from Tenders.Undp import Undp
-from Tenders.WorldBank import WorldBank
+from jobs.Indeed import Indeed
+from jobs.RemoteCo import RemoteCo
+from jobs.StepStone import StepStone
+from tenders.Caritas import Caritas
+from jobs.Gjirafa import Gjirafa
+from tenders.Cdf import Cdf
+from tenders.KcsFoundation import KcsFoundation
+from jobs.Kastori import Kastori
+from tenders.KastoriTender import KastoriTender
+from jobs.KosovaJob import KosovaJob
+from jobs.ArbeitsAgentur import ArbeitsAgentur
+from jobs.Telegrafi import Telegrafi
+from tenders.Osce import Osce
+from tenders.Undp import Undp
+from tenders.WorldBank import WorldBank
 
-tender_url = "https://punapune.com/api/tenders"
-job_url = "https://punapune.com/api/jobs"
+from common.api import *
+
 logs = []
 
 
@@ -51,6 +52,7 @@ sources = [
     # {'type': 'tender', 'source': Undp()},
     # {'type': 'tender', 'source': Cdf()},
     {'type': 'job', 'source': KosovaJob()},
+    {'type': 'job', 'source': ArbeitsAgentur()},
     # {'type': 'job', 'source': Indeed()}
 ]
 
