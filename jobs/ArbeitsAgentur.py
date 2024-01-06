@@ -12,8 +12,9 @@ class ArbeitsAgentur:
         self.popularJobs = ['Informatik', 'IT-Systemanalyse, -Anwendungsberatung und -Vertrieb',
                             'Softwareentwicklung und Programmierung', 'Einkauf und Vertrieb',
                             'Steuerberatung', 'Unternehmensorganisation und -strategie',
-                            'IT-Netzwerktechnik, -Administration, -Organisation', 'Werbung und Marketing', 'Personalwesen und -dienstleistung',
-                            'Versicherungs- und Finanzdienstleistungen', 'Elektrotechnik', 'Rechtsberatung, -sprechung und -ordnung']
+                            'IT-Netzwerktechnik, -Administration, -Organisation', 'Werbung und Marketing',
+                            'Personalwesen und -dienstleistung','Versicherungs- und Finanzdienstleistungen',
+                            'Elektrotechnik','Rechtsberatung, -sprechung und -ordnung']
 
     def get_data(self):
 
@@ -36,8 +37,8 @@ class ArbeitsAgentur:
             arbeitsort = item.get('arbeitsort', {})
             city = arbeitsort.get('ort', None)
 
-            url_exists = self.helpers.check_if_url_exists("job", title, None)
-            
+            url_exists = self.helpers.check_if_url_exists(type="job", name=title, deadline=None, url=url)
+
             if url_exists is not True:
                 self.parsedData.append({
                     "name": title,

@@ -8,7 +8,7 @@ from common.api import *
 
 class Helpers:
 
-    def check_if_url_exists(self, type, name, deadline=None):
+    def check_if_url_exists(self, type, name, deadline=None, url=None):
         try:
             params = {
                 'name': name,
@@ -16,6 +16,9 @@ class Helpers:
 
             if deadline is not None:
                 params['deadline'] = deadline
+
+            if url is not None:
+                params['url'] = url
 
             if type == 'job':
                 response = requests.get(job_url, params=params)
