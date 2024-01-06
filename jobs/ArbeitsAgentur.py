@@ -58,7 +58,7 @@ class ArbeitsAgentur:
             if is_remote:
                 url = f"https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/pc/v4/jobs?berufsfeld={category}&page=1&size=25&arbeitszeit=ho"
             else:
-                url = f"https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/pc/v4/jobs?berufsfeld={category}&page=1&size=25"
+                url = f"https://rest.arbeitsagentur.de/jobboerse/jobsuche-service/pc/v4/jobs?berufsfeld={category}&page=1&size=25&arbeitszeit=vz"
 
             data = self.fetch_data_from_api(url)
 
