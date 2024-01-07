@@ -2,11 +2,7 @@ import concurrent.futures
 
 from common.process_data import *
 
-
-from jobs.Indeed import Indeed
-from jobs.RemoteCo import RemoteCo
-from jobs.StepStone import StepStone
-from jobs.ArbeitsAgentur import ArbeitsAgentur
+from external_jobs.ArbeitsAgentur import ArbeitsAgentur
 
 sources = [
     # {'type': 'job', 'source': RemoteCo()},
@@ -20,6 +16,6 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
     for future in concurrent.futures.as_completed(futures):
         future.result()
 
-with open("logs/foreign_jobs_logs.txt", "w") as file:
+with open("logs/external_jobs_logs.txt", "w") as file:
     for log in logs:
         file.write(f"{log[0]} - Response: {log[1]}\n")

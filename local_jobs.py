@@ -1,10 +1,10 @@
 import concurrent.futures
 from common.process_data import *
 
-from jobs.Gjirafa import Gjirafa
-from jobs.Kastori import Kastori
-from jobs.KosovaJob import KosovaJob
-from jobs.Telegrafi import Telegrafi
+from local_jobs.Gjirafa import Gjirafa
+from local_jobs.Kastori import Kastori
+from local_jobs.KosovaJob import KosovaJob
+from local_jobs.Telegrafi import Telegrafi
 
 sources = [
     {'type': 'job', 'source': Kastori()},
