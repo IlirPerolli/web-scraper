@@ -1,13 +1,13 @@
 import concurrent.futures
 from common.process_data import *
 
-from local_tenders.Caritas import Caritas
-from local_tenders.Cdf import Cdf
-from local_tenders.KcsFoundation import KcsFoundation
-from local_tenders.KastoriTender import KastoriTender
-from local_tenders.Osce import Osce
-from local_tenders.Undp import Undp
-from local_tenders.WorldBank import WorldBank
+from local_tender_scrapers.Caritas import Caritas
+from local_tender_scrapers.Cdf import Cdf
+from local_tender_scrapers.KcsFoundation import KcsFoundation
+from local_tender_scrapers.KastoriTender import KastoriTender
+from local_tender_scrapers.Osce import Osce
+from local_tender_scrapers.Undp import Undp
+from local_tender_scrapers.WorldBank import WorldBank
 
 sources = [
     # {'type': 'tender', 'source': Caritas()},

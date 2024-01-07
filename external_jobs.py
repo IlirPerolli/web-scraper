@@ -2,7 +2,7 @@ import concurrent.futures
 
 from common.process_data import *
 
-from external_jobs.ArbeitsAgentur import ArbeitsAgentur
+from external_job_scrapers.ArbeitsAgentur import ArbeitsAgentur
 
 sources = [
     # {'type': 'job', 'source': RemoteCo()},

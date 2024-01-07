@@ -22,9 +22,9 @@ class StepStone:
         soup = BeautifulSoup(html, 'html.parser')
         print (soup)
 
-        # local_jobs = soup.find_all('div', class_="job-card")
+        # local_job_scrapers = soup.find_all('div', class_="job-card")
         #
-        # for job in local_jobs:
+        # for job in local_job_scrapers:
         #
         #     title = job.find('a').text.strip()
         #     urlEl = job.find('a').get('href').strip()
