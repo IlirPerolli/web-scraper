@@ -7,7 +7,6 @@ from Helpers import Helpers
 
 
 class Gjirafa:
-
     url = "https://gjirafa.com/Top/Pune"
     helpers = Helpers()
     date_format = "%d/%m/%Y"
@@ -27,6 +26,7 @@ class Gjirafa:
             title = None
             deadline = None
             category = None
+            city = None
             url = None
             image = None
             titleEl = job.find('h3', id="titulli")
@@ -34,14 +34,16 @@ class Gjirafa:
             if titleEl is not None:
                 title = titleEl.text.strip()
 
-            deadlineEl = job.findAll('div', class_="half mrrjp_ct")
-            if len(deadlineEl) != 0 and deadlineEl is not None:
-                deadlineEl = deadlineEl[1]
-                deadline = self.get_deadline(deadlineEl)
+            preferencesEl = job.findAll('div', class_="half mrrjp_ct")
 
-            categoryEl = job.findAll('div', class_="half mrrjp_ct")
-            if len(deadlineEl) != 0 and deadlineEl is not None:
-                category = self.get_category(categoryEl[0])
+            if len(preferencesEl) != 0 and preferencesEl is not None:
+                deadline = self.get_deadline(preferencesEl[1])
+
+            if len(preferencesEl) != 0 and preferencesEl is not None:
+                category = self.get_category(preferencesEl[0])
+
+            if len(preferencesEl) != 0 and preferencesEl is not None:
+                city = self.get_city(preferencesEl[0])
 
             url = job.find('a')
             if url is not None:
@@ -59,7 +61,6 @@ class Gjirafa:
                 url_exists = self.helpers.check_if_url_exists("job", title, deadline)
 
                 if url_exists is not True:
-
                     self.parsedData.append({
                         "name": title,
                         "url": url,
@@ -67,6 +68,7 @@ class Gjirafa:
                         "deadline": deadline,
                         "provider": "Gjirafa",
                         'country': "Kosovo",
+                        'city': city,
                         'categories': [category]
                     })
 
@@ -94,8 +96,20 @@ class Gjirafa:
 
         return category
 
+    def get_city(self, city_el):
+        city_pattern = r"Shteti:</em>\s*([\w\s]+)"
+        city_match = re.search(city_pattern, str(city_el))
+
+        if city_match:
+            city = city_match.group(1)
+        else:
+            city = None
+
+        return city
+
     def getImage(self, element):
         style_attribute = element['style']
         start_index = style_attribute.index("url('") + len("url('")
         end_index = style_attribute.index("')")
         return style_attribute[start_index:end_index]
+
