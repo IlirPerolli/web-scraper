@@ -1,16 +1,10 @@
 import re
 from urllib.parse import urlparse, parse_qs
-
-from bs4 import BeautifulSoup
-import requests
-from zenrows import ZenRowsClient
-
-from Helpers import Helpers
+from common.helpers import *
 
 
 class Indeed:
     url = "https://www.indeed.com/jobs?q=doctor&l=Remote&vjk=cbf747028cec6cfa"
-    helpers = Helpers()
 
     def __init__(self):
         self.parsedData = []
@@ -63,7 +57,7 @@ class Indeed:
 
             url = f"https://www.indeed.com/m/viewjob?jk={jk_attribute}"
 
-            url_exists = self.helpers.check_if_url_exists("job", title)
+            url_exists = check_if_url_exists("job", title)
 
             if url_exists is not True:
                 data_entry = {

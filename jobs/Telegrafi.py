@@ -1,13 +1,8 @@
-from datetime import timedelta, datetime
-
-from bs4 import BeautifulSoup
-import requests
-from Helpers import Helpers
+from common.helpers import *
 
 
 class Telegrafi:
     url = "https://jobs.telegrafi.com/"
-    helpers = Helpers()
     date_format = "%d/%m/%Y"
 
     def __init__(self):
@@ -42,7 +37,7 @@ class Telegrafi:
             if image == '/assets/img/passBackLogo.svg':
                 image = None
 
-            url_exists = self.helpers.check_if_url_exists("job", title, deadline)
+            url_exists = check_if_url_exists("job", title, deadline)
 
             if url_exists is not True:
                 self.parsedData.append({

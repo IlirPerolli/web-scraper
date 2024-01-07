@@ -1,11 +1,8 @@
-from bs4 import BeautifulSoup
-import requests
-from Helpers import Helpers
+from common.helpers import *
 
 
 class Osce:
     url = "https://procurement.osce.org/tenders?f%5B0%5D=source%3AOSCE%20Mission%20in%20Kosovo"
-    helpers = Helpers()
 
     def __init__(self):
         self.parsedData = []
@@ -23,7 +20,7 @@ class Osce:
             deadlineEl = job.find('time').get('datetime')
             deadline = deadlineEl.split('T')[0]
 
-            url_exists = self.helpers.check_if_url_exists("tender", title)
+            url_exists = check_if_url_exists("tender", title)
 
             if url_exists is not True:
                 self.parsedData.append({

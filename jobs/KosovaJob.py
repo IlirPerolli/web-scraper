@@ -1,13 +1,9 @@
-from datetime import timedelta, datetime
-
-from bs4 import BeautifulSoup
-from Helpers import Helpers
+from common.helpers import *
 from zenrows import ZenRowsClient
 
 
 class KosovaJob:
     url = "https://kosovajob.com/"
-    helpers = Helpers()
     date_format = "%d/%m/%Y"
 
     def __init__(self):
@@ -42,7 +38,7 @@ class KosovaJob:
 
             image = job.find('div').attrs.get("data-background-image", None)
 
-            url_exists = self.helpers.check_if_url_exists("job", title, deadline)
+            url_exists = check_if_url_exists("job", title, deadline)
 
             if url_exists is not True:
                 self.parsedData.append({

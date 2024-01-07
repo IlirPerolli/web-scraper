@@ -1,15 +1,10 @@
-from datetime import datetime
 import re
-
-from bs4 import BeautifulSoup
-import requests
-from Helpers import Helpers
+from common.helpers import *
 
 
 class Cdf:
     url = "https://kcdf.org/procurement/"
     date_format = "%Y-%m-%d"
-    helpers = Helpers()
 
     def __init__(self):
         self.parsedData = []
@@ -26,7 +21,7 @@ class Cdf:
 
             url = job.find('a')['href']
 
-            url_exists = self.helpers.check_if_url_exists("tender", title, deadline)
+            url_exists = check_if_url_exists("tender", title, deadline)
 
             if url_exists is not True:
                 self.parsedData.append({

@@ -1,15 +1,10 @@
-from datetime import timedelta, datetime
-
-from bs4 import BeautifulSoup
-import requests
 from zenrows import ZenRowsClient
 
-from Helpers import Helpers
+from common.helpers import *
 
 
 class StepStone:
     url = "https://www.stepstone.de/jobs/vollzeit/"
-    helpers = Helpers()
     date_format = "%d/%m/%Y"
 
     def __init__(self):
@@ -42,14 +37,14 @@ class StepStone:
         #
         #     image = job.find('img', class_='card-img').get('data-lazy-src').strip()
         #
-        #     url_exists = self.helpers.check_if_url_exists("job", title)
+        #     url_exists = check_if_url_exists("job", title)
         #
         #     if url_exists is not True:
         #         self.parsedData.append({
         #             "name": title,
         #             "url": url,
         #             "image_path": image,
-        #             "deadline": self.helpers.add_one_month_deadline(),
+        #             "deadline": add_one_month_deadline(),
         #             "provider": "Remote.co",
         #             "categories": categories,
         #             "is_remote": True

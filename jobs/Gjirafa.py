@@ -1,14 +1,9 @@
-from datetime import datetime
 import re
-
-from bs4 import BeautifulSoup
-import requests
-from Helpers import Helpers
+from common.helpers import *
 
 
 class Gjirafa:
     url = "https://gjirafa.com/Top/Pune"
-    helpers = Helpers()
     date_format = "%d/%m/%Y"
 
     def __init__(self):
@@ -51,14 +46,14 @@ class Gjirafa:
 
             image_el = job.find('div', class_='mp_img')
             if image_el is not None:
-                image = self.getImage(image_el)
+                image = self.get_image(image_el)
 
             if image == '/Images/promovoIco.png':
                 image = None
 
             if title is not None:
 
-                url_exists = self.helpers.check_if_url_exists("job", title, deadline)
+                url_exists = check_if_url_exists("job", title, deadline)
 
                 if url_exists is not True:
                     self.parsedData.append({
@@ -107,7 +102,7 @@ class Gjirafa:
 
         return city
 
-    def getImage(self, element):
+    def get_image(self, element):
         style_attribute = element['style']
         start_index = style_attribute.index("url('") + len("url('")
         end_index = style_attribute.index("')")

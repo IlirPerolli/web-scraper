@@ -1,7 +1,4 @@
-from datetime import datetime
-from bs4 import BeautifulSoup
-import requests
-from Helpers import Helpers
+from common.helpers import *
 
 
 def format_date(date):
@@ -14,7 +11,6 @@ def format_date(date):
 
 class Undp:
     url = "https://procurement-notices.undp.org/search.cfm"
-    helpers = Helpers()
 
     def __init__(self):
         self.parsedData = []
@@ -47,7 +43,7 @@ class Undp:
 
         deadline = format_date(deadline)
 
-        url_exists = self.helpers.check_if_url_exists("tender", title)
+        url_exists = check_if_url_exists("tender", title)
 
         if url_exists is not True:
             self.parsedData.append({

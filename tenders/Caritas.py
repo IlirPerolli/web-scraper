@@ -1,10 +1,8 @@
-from bs4 import BeautifulSoup
-import requests
-from Helpers import Helpers
+from common.helpers import *
+
 
 class Caritas:
     url = "https://www.caritaskosova.org/sq/shpallje"
-    helpers = Helpers()
 
     def __init__(self):
         self.parsedData = []
@@ -14,15 +12,15 @@ class Caritas:
         soup = BeautifulSoup(html, 'html.parser')
 
         jobs = soup.find_all('a', class_="document")
-        
+
         for job in jobs:
             title = job.text.strip()
             url = job.get('href').strip()
 
-            url_exists = self.helpers.check_if_url_exists("job", title)
+            url_exists = check_if_url_exists("job", title)
 
             if url_exists is not True:
-                raw_text = self.helpers.get_raw_text(url)
+                raw_text = get_raw_text(url)
 
                 # openai_model = OpenAiModel("deadline", raw_text)
                 # deadline = openai_model.getResponse()

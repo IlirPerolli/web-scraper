@@ -1,11 +1,8 @@
-import requests
-from datetime import datetime
-from Helpers import Helpers
+from common.helpers import *
 
 
 class ArbeitsAgentur:
     date_format = "%Y-%m-%d"
-    helpers = Helpers()
 
     def __init__(self):
         self.parsedData = []
@@ -37,7 +34,7 @@ class ArbeitsAgentur:
             arbeitsort = item.get('arbeitsort', {})
             city = arbeitsort.get('ort', None)
 
-            url_exists = self.helpers.check_if_url_exists(type="job", name=title, deadline=None, url=url)
+            url_exists = check_if_url_exists(type="job", name=title, deadline=None, url=url)
 
             if url_exists is not True:
                 self.parsedData.append({

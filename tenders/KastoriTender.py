@@ -1,13 +1,9 @@
-import requests
-from datetime import datetime
-from Helpers import Helpers
-from OpenAi import OpenAiModel
+from common.helpers import *
 
 
 class KastoriTender:
     url = "https://octopus-app-sngkk.ondigitalocean.app/v1/jobs?page=1&limit=32&typeOfJob=grante"
     date_format = "%Y-%m-%d"
-    helpers = Helpers()
 
     def __init__(self):
         self.parsedData = []
@@ -31,7 +27,7 @@ class KastoriTender:
             category = categories[0]['title'] if categories and isinstance(categories, list) and categories else None
             city = item.get('city', None)
 
-            url_exists = self.helpers.check_if_url_exists("tender", title, deadline)
+            url_exists = check_if_url_exists("tender", title, deadline)
 
             if url_exists is not True:
                 self.parsedData.append({
